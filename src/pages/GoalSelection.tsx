@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Monitor, BarChart3, Megaphone } from "lucide-react";
+import AppHeader from "@/components/AppHeader";
 
 const goals = [
   { id: "dev", icon: Monitor, label: "Software Developer", desc: "Build apps & systems" },
@@ -14,8 +15,9 @@ const GoalSelection = () => {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center px-6 py-12 bg-background">
-      <div className="max-w-sm mx-auto w-full animate-fade-in space-y-8">
+    <div className="min-h-screen flex flex-col px-6 py-6 bg-background">
+      <AppHeader />
+      <div className="flex-1 flex flex-col justify-center max-w-sm mx-auto w-full animate-fade-in space-y-8">
         <div className="space-y-2">
           <h1 className="text-2xl">What do you want to become?</h1>
           <p className="text-muted-foreground font-body text-sm">Choose your career path</p>
@@ -30,9 +32,7 @@ const GoalSelection = () => {
                 key={goal.id}
                 onClick={() => setSelected(goal.id)}
                 className={`w-full flex items-center gap-4 p-5 rounded-lg bg-card border-2 transition-all duration-200 shadow-soft text-left ${
-                  isActive
-                    ? "border-primary shadow-card-hover ring-2 ring-primary/20"
-                    : "border-transparent hover:border-primary/30"
+                  isActive ? "border-primary shadow-card-hover ring-2 ring-primary/20" : "border-transparent hover:border-primary/30"
                 }`}
               >
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${isActive ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"}`}>
@@ -47,9 +47,7 @@ const GoalSelection = () => {
           })}
         </div>
 
-        <Button size="full" disabled={!selected} onClick={() => navigate("/level")}>
-          Continue
-        </Button>
+        <Button size="full" disabled={!selected} onClick={() => navigate("/level")}>Continue</Button>
       </div>
     </div>
   );
